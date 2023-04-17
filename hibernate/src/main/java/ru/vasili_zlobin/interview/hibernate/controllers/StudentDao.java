@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import ru.vasili_zlobin.interview.hibernate.model.Student;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public class StudentDao implements DatabaseDao<Student, Long> {
