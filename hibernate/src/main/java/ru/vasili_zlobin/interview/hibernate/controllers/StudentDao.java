@@ -7,10 +7,11 @@ import ru.vasili_zlobin.interview.hibernate.model.Student;
 
 import java.util.List;
 
-public class StudentDao {
+public class StudentDao implements DatabaseDao<Student, Long> {
     private static Session getSession() {
         return ConnectFactory.getSession();
     }
+    @Override
     public void saveOrUpdate(Student student) {
         Session session = getSession();
         session.beginTransaction();
@@ -21,7 +22,7 @@ public class StudentDao {
         }
         session.getTransaction().commit();
     }
-
+    @Override
     public List<Student> findAll() {
         Session session = getSession();
         session.beginTransaction();
@@ -29,7 +30,7 @@ public class StudentDao {
         session.getTransaction().commit();
         return result;
     }
-
+    @Override
     public Student findById(Long id) {
         Session session = getSession();
         session.beginTransaction();
@@ -37,7 +38,7 @@ public class StudentDao {
         session.getTransaction().commit();
         return result;
     }
-
+    @Override
     public void deleteById(Long id) {
         Session session = getSession();
         session.beginTransaction();
@@ -45,7 +46,7 @@ public class StudentDao {
                 .setParameter("id", id).executeUpdate();
         session.getTransaction().commit();
     }
-
+    @Override
     public Integer getCountRows() {
         Session session = ConnectFactory.getSession();
         session.beginTransaction();
